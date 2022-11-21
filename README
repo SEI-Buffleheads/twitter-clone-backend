@@ -1,0 +1,29 @@
+# Twitter API Clone, Built with Django
+---
+
+### Admin
+
+```
+http://localhost:8000/admin/
+
+```
+
+##### Get Requests
+
+```
+API Root: http://localhost:8000/
+
+Get Users: http://localhost:8000/user/
+
+Get Users By ID: http://localhost:8000/user/ID
+
+Get Posts: http://localhost:8000/post/
+
+Get Posts By ID : http://localhost:8000/post/id
+
+Get Comments: http://localhost:8000/post/
+
+Get Comments By ID: http://localhost:8000/post/id
+
+fetch Object by diff params coming soon...
+```
