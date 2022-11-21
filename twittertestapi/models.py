@@ -21,7 +21,7 @@ class User(models.Model):
   likedPosts = ArrayField(models.CharField(max_length=200), blank=True, null=True)
   Tweets = ArrayField(models.CharField(max_length=200),blank=True, null=True)
   Comments = ArrayField(models.CharField(max_length=200), blank=True, null=True)
-  Date = models.DateTimeField(datetime.datetime.now(),blank=True, null=True)
+  Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
   def __str__(self):
     return f'{self.username} - {self.email} - {self.DOB} - {self.description} - {self.followingCount} - {self.followerCount} - {self.followerList}- {self.followingList}- {self.ProfileIMG}- {self.ProfileBackgroundIMG}- {self.isUser}- {self.followingStatus}- {self.followRequestSent}- {self.likedPosts}- {self.Tweets} - {self.Comments}'
 
@@ -33,7 +33,7 @@ class Post(models.Model):
   URL = models.CharField(max_length=128, blank=True)
   ImageURL = models.CharField(max_length=128, blank=True)
   Comments = ArrayField(models.CharField(max_length=200), blank=True, null=True)
-  Date = models.DateTimeField(datetime.datetime.now(),blank=True, null=True)
+  Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
   def __str__(self):
     return f'{self.OwnerID} - {self.Text}- {self.Likes}- {self.LikedUsers}- {self.URL}- {self.ImageURL}- {self.Comments}'
 
@@ -45,6 +45,6 @@ class Comment(models.Model):
   Likes = models.IntegerField(default=0,blank=True)
   LikedUsers = ArrayField(models.CharField(max_length=200), blank=True, null=True)
   Replies = ArrayField(models.CharField(max_length=200), blank=True, null=True)
-  Date = models.DateTimeField(datetime.datetime.now(),blank=True, null=True)
+  Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
   def __str__(self):
     return f'{self.name} - {self.subject}'
