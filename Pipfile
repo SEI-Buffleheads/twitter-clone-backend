@@ -52,6 +52,7 @@ virtualenvwrapper = "==4.8.4"
 wcwidth = "==0.2.5"
 werkzeug = "==2.2.2"
 djangorestframework = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
