@@ -1,8 +1,11 @@
 # Twitter API Backend
 
-# To do, steps below are for testing on local database
-# we need to have a online database, but for now this is testing
+# To do, steps below are for testing on local database we need to have a online database, but for now this is testing
+```
+Steps
+
 -mkvirtualenv twitterbackend
+-pipenv shell
 -pip install django
 -django-admin startproject twitterapi
 -psql -d postgres
@@ -13,36 +16,13 @@
 -twitterbackend;
 -django-admin startapp twitterapi
 -pip install djangorestframework
-
-# Now go to shell
-
--pipenv shell
-
-# setting configurations
--add to database settings, this needs to be altered later,
--create superuser locally, then login
-```
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'twitterbackend',
-        'USER': 'twitterbackenduser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost'
-    }
 ```
 
-
-
-### Admin
+##### Links
 
 ```
-http://localhost:8000/admin/
+Admin: http://localhost:8000/admin/
 
-```
-
-##### Get Requests
-
-```
 API Root: http://localhost:8000/
 
 Get Users: http://localhost:8000/user/
