@@ -4,6 +4,7 @@
 ```
 Steps
 
+-pip install -r requirements.txt
 -mkvirtualenv twitterbackend
 -pipenv shell
 -pip install django
