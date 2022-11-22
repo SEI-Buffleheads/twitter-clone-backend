@@ -11,7 +11,7 @@ Steps
 -psql -d postgres
 -CREATE DATABASE twitterbackend;
 -CREATE USER twitterbackenduser WITH PASSWORD 'password';
--GRANT ALL PRIVILEGES ON DATABASE twitterbackenduser TO 
+-GRANT ALL PRIVILEGES ON DATABASE twitterbackenduser TO twitterbackenduser;
 -pip install psycopg2-binary
 -twitterbackend;
 -pip install djangorestframework
