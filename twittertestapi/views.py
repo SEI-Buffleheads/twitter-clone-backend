@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from .serializers import UserSerializer, PostSerializer, CommentSerializer
-from .Models.models import User, Post, Comment
+from .models import User, Post, Comment
 
 # Create your views here.
 

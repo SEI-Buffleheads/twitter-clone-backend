@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.conf import settings
 from django.contrib.auth.models import User
-# Create your models here.
 
 class User(models.Model):
   username = models.CharField(max_length=128)
@@ -11,20 +10,19 @@ class User(models.Model):
   description = models.CharField(max_length=10000 , blank=True)
   followingCount = models.IntegerField(default=0,blank=True)
   followerCount = models.IntegerField(default=0,blank=True)
-
   followerList = models.ManyToManyField("self", blank=True)
   followingList = models.ManyToManyField("self", blank=True)
-
   ProfileIMG = models.CharField(max_length=128, blank=True)
   ProfileBackgroundIMG = models.CharField(max_length=128, blank=True)
   isUser = models.BooleanField(blank=True, null=True)
   followingStatus = models.BooleanField(blank=True, null=True)
   followRequestSent = models.BooleanField(blank=True, null=True)
-  
   likedPosts = models.ManyToManyField('Post',related_name='likedTweets', blank=True)
   Tweets = models.ManyToManyField('Post',related_name='Tweets', blank=True)
   Comments = models.ManyToManyField('Post', related_name='post', blank=True)
   Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
+  def __str__(self):
+    return f'{self.username} - {self.id}'
 
 class Post(models.Model):
   OwnerID = models.ForeignKey(User, related_name='post', on_delete=models.CASCADE, null=True)
