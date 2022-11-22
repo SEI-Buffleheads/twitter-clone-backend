@@ -1,54 +1,51 @@
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
-import datetime
 from django.conf import settings
 from django.contrib.auth.models import User
-
 # Create your models here.
 
 class User(models.Model):
-  # user = models.OneToOneField(User, on_delete=models.CASCADE)
   username = models.CharField(max_length=128)
   email = models.CharField(max_length=128)
   DOB= models.CharField(max_length=128)
   description = models.CharField(max_length=10000 , blank=True)
   followingCount = models.IntegerField(default=0,blank=True)
   followerCount = models.IntegerField(default=0,blank=True)
-  followerList = ArrayField(models.CharField(max_length=10000),blank=True, null=True)
-  followingList = ArrayField(models.CharField(max_length=10000), blank=True, null=True)
+
+  followerList = models.ManyToManyField("self", blank=True)
+  followingList = models.ManyToManyField("self", blank=True)
+
   ProfileIMG = models.CharField(max_length=128, blank=True)
   ProfileBackgroundIMG = models.CharField(max_length=128, blank=True)
   isUser = models.BooleanField(blank=True, null=True)
   followingStatus = models.BooleanField(blank=True, null=True)
   followRequestSent = models.BooleanField(blank=True, null=True)
-  likedPosts = ArrayField(models.CharField(max_length=200), blank=True, null=True)
-  Tweets = ArrayField(models.CharField(max_length=200),blank=True, null=True)
-  Comments = ArrayField(models.CharField(max_length=200), blank=True, null=True)
+  
+  likedPosts = models.ManyToManyField('Post',related_name='likedTweets', blank=True)
+  Tweets = models.ManyToManyField('Post',related_name='Tweets', blank=True)
+  Comments = models.ManyToManyField('Post', related_name='post', blank=True)
   Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
-
-  def __str__(self):
-    return f'{self.username} - {self.email} - {self.DOB} - {self.description} - {self.followingCount} - {self.followerCount} - {self.followerList}- {self.followingList}- {self.ProfileIMG}- {self.ProfileBackgroundIMG}- {self.isUser}- {self.followingStatus}- {self.followRequestSent}- {self.likedPosts}- {self.Tweets} - {self.Comments}'
 
 class Post(models.Model):
   OwnerID = models.ForeignKey(User, related_name='post', on_delete=models.CASCADE, null=True)
   Text = models.CharField(max_length=128)
   Likes = models.IntegerField(default=0,blank=True)
-  LikedUsers = ArrayField(models.CharField(max_length=200), blank=True, null=True)
+  LikedUsers = models.ManyToManyField('User',related_name='likedUsers', blank=True)
   URL = models.CharField(max_length=128, blank=True)
   ImageURL = models.CharField(max_length=128, blank=True)
-  Comments = ArrayField(models.CharField(max_length=200), blank=True, null=True)
+  Comments = models.ManyToManyField('Comment',related_name='comment', blank=True)
   Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
   def __str__(self):
-    return f'{self.OwnerID} - {self.Text}- {self.Likes}- {self.LikedUsers}- {self.URL}- {self.ImageURL}- {self.Comments}'
+    return f'{self.OwnerID}'
 
 class Comment(models.Model):
-  PostID = models.CharField(max_length=128)
-  OwnerID = models.CharField(max_length=128)
+  PostID = models.ForeignKey(Post, related_name='postOwner', on_delete=models.CASCADE, null=True)
+  OwnerID = models.ForeignKey(User, related_name='commentOwner', on_delete=models.CASCADE, null=True)
   Text = models.CharField(max_length=128)
   ImageURL = models.CharField(max_length=128, blank=True)
   Likes = models.IntegerField(default=0,blank=True)
-  LikedUsers = ArrayField(models.CharField(max_length=200), blank=True, null=True)
-  Replies = ArrayField(models.CharField(max_length=200), blank=True, null=True)
+  LikedUsers = models.ManyToManyField('User',related_name='likedCommentUsers', blank=True)
+  Comments = models.ManyToManyField("self", blank=True)
   Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
   def __str__(self):
-    return f'{self.name} - {self.subject}'
+    return f'{self.id}'
