@@ -29,22 +29,22 @@ class LoginSerializer(serializers.ModelSerializer):
   token = serializers.CharField(max_length=255, min_length = 3, read_only= True)
   class Meta:
     model = User
-    fields = ['email', 'password', 'username', 'token']
+    fields = ['email', 'password', 'username', 'token', 'created_at']
 
   def validate(self, attrs):
     email = attrs.get('email', '')
     password = attrs.get('password', '')
     
     user = auth.authenticate(email = email, password = password)
-    if not user.is_active:
-      raise AuthenticationFailed("Account DISABLED, you're banned")
-
     if not user:
       raise AuthenticationFailed("Invalid Crendentials, try again")
 
+    if not user.is_active:
+      raise AuthenticationFailed("Account DISABLED, you're banned")
     return {
       'email': user.email,
       'username': user.username,
-      'tokens': user.tokens()
+      'tokens': user.tokens(),
+      'created_at': user.created_at
     }
     return super().validate(attrs)
