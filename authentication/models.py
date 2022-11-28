@@ -9,15 +9,15 @@ class UserManager(BaseUserManager):
       raise TypeError('Users should have a username')
     if email is None:
       raise TypeError('Users should have an Email')
-    user = self.model(username=username, email=self.normalize_email)
+    user = self.model(username=username, email=email)
     user.set_password(password)
     user.save()
     return user
   def create_superuser(self, username, email, password=None):
     if username is None:
-      raise TypeError('Users should have a username')
+      raise TypeError('Username required')
     if email is None:
-      raise TypeError('Users should have an Email')
+      raise TypeError('Email required')
     user = self.create_user(username,email,password)
     user.is_superuser = True
     user.is_staff = True

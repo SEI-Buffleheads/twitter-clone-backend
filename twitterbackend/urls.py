@@ -18,5 +18,6 @@ from django.urls import path, include
 from rest_framework import routers
 
 urlpatterns = [
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('auth/',include('authentication.urls'))
 ]
