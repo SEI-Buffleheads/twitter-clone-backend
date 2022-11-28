@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_simplejwt',
     'authentication',
     'twitterapi',
-    'knox'
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -145,4 +146,14 @@ REST_FRAMEWORK = {
 REST_KNOX = {
   'TOKEN_TTL': timedelta(hours=340),
   'AUTO_REFRESH': True,
+}
+
+SWAGGER_SETTINGS = {
+  'SECURITY_DEFINITIONS' : {
+    'Bearer': {
+      'type' : 'apiKey',
+      'name' : 'Authorization',
+      'in': 'header'
+    }
+  }
 }

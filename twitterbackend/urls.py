@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/',include('authentication.urls'))
+    path('auth/',include('authentication.urls')),
+    path('posts/',include('twitterapi.urls'))
 ]
