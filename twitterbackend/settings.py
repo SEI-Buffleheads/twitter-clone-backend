@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'authentication',
-    'twitterapi'
+    'twitterapi',
+    'knox'
 ]
 
 MIDDLEWARE = [
@@ -138,5 +139,10 @@ REST_FRAMEWORK = {
   'NON_FIELD_ERRORS_KEY': 'error',
   'DEFAULT_AUTHENTICATION_CLASSES': (
     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+}
+
+REST_KNOX = {
+  'TOKEN_TTL': timedelta(hours=340),
+  'AUTO_REFRESH': True,
 }

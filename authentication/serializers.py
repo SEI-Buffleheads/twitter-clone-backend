@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import User
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework import permissions
 
 class RegisterSerializer(serializers.ModelSerializer):
   password = serializers.CharField(max_length = 68, min_length = 6, write_only = True)
@@ -23,6 +24,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     return User.objects.create_user(**validated_data)
 
 class LoginSerializer(serializers.ModelSerializer):
+  permission_classes = [permissions.AllowAny]
   email = serializers.EmailField(max_length=255, min_length = 3)
   password = serializers.CharField(max_length=68, min_length = 6, write_only = True)
   username = serializers.CharField(max_length=255, min_length = 3, read_only= True)
