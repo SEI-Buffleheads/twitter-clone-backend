@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "corsheaders",
     'twittertestapi',
-    'rest_framework_simplejwt',
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -93,7 +93,7 @@ DATABASES = {
     }
 }
 
-# AUTH_USER_MODEL = "twittertestapi.User"
+AUTH_USER_MODEL = "twittertestapi.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

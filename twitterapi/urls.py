@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from twittertestapi.views import UserViewSet, PostViewSet, CommentViewSet
+from twittertestapi.views import UserViewSet, PostViewSet
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenVerifyView
 
