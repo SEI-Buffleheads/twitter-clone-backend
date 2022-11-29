@@ -51,9 +51,13 @@ virtualenv-clone = "==0.5.7"
 virtualenvwrapper = "==4.8.4"
 wcwidth = "==0.2.5"
 werkzeug = "==2.2.2"
-djangorestframework = "*"
+djangorestframework = "==3.14.0"
 djangorestframework-simplejwt = "*"
-django-cors-headers = "*"
+django-cors-headers = "==3.13.0"
+django-filter = "==22.1"
+django-rest-framework = "==0.1.0"
+markdown = "==3.4.1"
+pytz = "==2022.6"
 
 [dev-packages]
 
