@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-n62zn8(mw%!jy&l9yukjy0jn8uk=v%!0_!#)s$(2o=+uen=079
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '*',
     '0.0.0.0',
     'twitter-clone-backend-production-0cca.up.railway.app',
     '127.0.0.1'
@@ -83,15 +84,12 @@ WSGI_APPLICATION = 'twitterbackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'twitterbackend',
-        'USER': 'twitterbackenduser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost'
+      'ENGINE': 'django.db.backends.postgresql',
+      'NAME': 'railway',
+      'USER': 'postgres',
+      'PASSWORD': 'i0xuK4qlEXKKWGQ4eOXP',
+      'HOST': 'localhocontainers-us-west-93.railway.appst',
+      'PORT': '7729'
     }
 }
 
