@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-from datetime import timedelta
+import datetime
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -143,9 +143,12 @@ REST_FRAMEWORK = {
     ),
 }
 
-REST_KNOX = {
-  'TOKEN_TTL': timedelta(hours=340),
-  'AUTO_REFRESH': True,
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=10),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=2),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+
 }
 
 SWAGGER_SETTINGS = {

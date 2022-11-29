@@ -1,6 +1,7 @@
 from django.db import models
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import ( AbstractBaseUser, BaseUserManager, PermissionsMixin)
+from twitterapi.models import Post
 
 class UserManager(BaseUserManager):
   def create_user(self, username, email, password=None):
@@ -29,7 +30,6 @@ class User(AbstractBaseUser, PermissionsMixin):
   is_active = models.BooleanField(default=True)
   is_staff = models.BooleanField(default=False)
   created_at = models.DateTimeField(auto_now_add = True)
-  
   USERNAME_FIELD = 'email'
   REQUIRED_FIELDS = ['username']
 
