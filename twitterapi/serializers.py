@@ -9,10 +9,11 @@ class PostSerializer(serializers.ModelSerializer):
     fields = [ "text", "date", "title",'owner','id']
   
 class UserSerializer(serializers.ModelSerializer):
-  # posts = serializers.PrimaryKeyRelatedField(PostSerializer,many=True)
+  post_owner = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all(), many=True)
+  comment_owner = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all(), many=True)
   class Meta:
     model = User
-    fields = ['username', 'created_at','id',]
+    fields = ['username', 'created_at','id','post_owner','comment_owner']
 
 class CommentSerializer(serializers.ModelSerializer):
   owner = serializers.CharField(max_length=255, min_length = 3, read_only= True)
