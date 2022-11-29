@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics, status
 from .serializers import RegisterSerializer, LoginSerializer
 from rest_framework.response import Response
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User
 

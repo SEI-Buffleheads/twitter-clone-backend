@@ -1,49 +1,17 @@
-# from django.db import models
-# from django.contrib.postgres.fields import ArrayField
-# from django.conf import settings
-# from django.contrib.auth.models import User
+from django.db import models
+from django.conf import settings
 
-# class User(models.Model):
-#   username = models.CharField(max_length=128)
-#   email = models.CharField(max_length=128)
-#   DOB= models.CharField(max_length=128)
-#   description = models.CharField(max_length=10000 , blank=True)
-#   followingCount = models.IntegerField(default=0,blank=True)
-#   followerCount = models.IntegerField(default=0,blank=True)
-#   followerList = models.ManyToManyField("self", blank=True)
-#   followingList = models.ManyToManyField("self", blank=True)
-#   ProfileIMG = models.CharField(max_length=128, blank=True)
-#   ProfileBackgroundIMG = models.CharField(max_length=128, blank=True)
-#   isUser = models.BooleanField(blank=True, null=True)
-#   followingStatus = models.BooleanField(blank=True, null=True)
-#   followRequestSent = models.BooleanField(blank=True, null=True)
-#   likedPosts = models.ManyToManyField('Post',related_name='likedTweets', blank=True)
-#   Tweets = models.ManyToManyField('Post',related_name='Tweets', blank=True)
-#   Comments = models.ManyToManyField('Post', related_name='post', blank=True)
-#   Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
-#   def __str__(self):
-#     return f'{self.username} - {self.id}'
+class Post(models.Model):
+  owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="post_owner", null=True)
+  text = models.CharField(max_length=128, blank=False)
+  title = models.CharField(max_length=128, default="Text")
+  date = models.DateTimeField(auto_now_add = True)
+  likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='post_liked', blank=True)
 
-# class Post(models.Model):
-#   OwnerID = models.ForeignKey(User, related_name='post', on_delete=models.CASCADE, null=True)
-#   Text = models.CharField(max_length=128)
-#   Likes = models.IntegerField(default=0,blank=True)
-#   LikedUsers = models.ManyToManyField('User',related_name='likedUsers', blank=True)
-#   URL = models.CharField(max_length=128, blank=True)
-#   ImageURL = models.CharField(max_length=128, blank=True)
-#   Comments = models.ManyToManyField('Comment',related_name='comment', blank=True)
-#   Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
-#   def __str__(self):
-#     return f'{self.OwnerID}'
-
-# class Comment(models.Model):
-#   PostID = models.ForeignKey(Post, related_name='postOwner', on_delete=models.CASCADE, null=True)
-#   OwnerID = models.ForeignKey(User, related_name='commentOwner', on_delete=models.CASCADE, null=True)
-#   Text = models.CharField(max_length=128)
-#   ImageURL = models.CharField(max_length=128, blank=True)
-#   Likes = models.IntegerField(default=0,blank=True)
-#   LikedUsers = models.ManyToManyField('User',related_name='likedCommentUsers', blank=True)
-#   Comments = models.ManyToManyField("self", blank=True)
-#   Date = models.DateTimeField(auto_now_add=True,blank=True, null=True)
-#   def __str__(self):
-#     return f'{self.id}'
+class Comment(models.Model):
+  owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comment_owner", null=True)
+  post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="post_its_on", null=True)
+  text = models.CharField(max_length=128, blank=False)
+  title = models.CharField(max_length=128, default="Text")
+  date = models.DateTimeField(auto_now_add = True)
+  likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='comment_likes', blank=True)
