@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'twitterbackend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-CSRF_TRUSTED_ORIGINS = ['https://twitter-clone-backend-production-0cca.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['https://twitter-clone-backend-production-0cca.up.railway.app']
 
 DATABASES = {
     'default': {
