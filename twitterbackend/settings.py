@@ -88,7 +88,7 @@ DATABASES = {
       'NAME': 'railway',
       'USER': 'postgres',
       'PASSWORD': 'i0xuK4qlEXKKWGQ4eOXP',
-      'HOST': 'localhocontainers-us-west-93.railway.appst',
+      'HOST': 'containers-us-west-93.railway.app',
       'PORT': '7729'
     }
 }
@@ -154,12 +154,12 @@ SIMPLE_JWT = {
 
 }
 
-SWAGGER_SETTINGS = {
-  'SECURITY_DEFINITIONS' : {
-    'Bearer': {
-      'type' : 'apiKey',
-      'name' : 'Authorization',
-      'in': 'header'
-    }
-  }
-}
+# SWAGGER_SETTINGS = {
+#   'SECURITY_DEFINITIONS' : {
+#     'Bearer': {
+#       'type' : 'apiKey',
+#       'name' : 'Authorization',
+#       'in': 'header'
+#     }
+#   }
+# }
