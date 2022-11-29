@@ -1,7 +1,14 @@
 from django.urls import path
-from .views import UserListApiView
+from .views import UserViewSet, PostViewSet
+from rest_framework import routers
+from django.conf.urls import include
+
+router = routers.DefaultRouter()
+
+router.register(r'user', UserViewSet, basename='user')
+router.register(r'posts', PostViewSet, basename='allPost')
 
 urlpatterns = [
-  path('', UserListApiView.as_view(), name="user"),
-  path('<int:id>', UserListApiView.as_view(), name="user"),
+  path('', include(router.urls))
+  
 ]

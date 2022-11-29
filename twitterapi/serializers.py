@@ -6,10 +6,10 @@ class PostSerializer(serializers.ModelSerializer):
   owner = serializers.CharField(max_length=255, min_length = 3, read_only= True)
   class Meta:
     model = Post
-    fields = [ "text", "date", "title",'owner']
+    fields = [ "text", "date", "title",'owner','id']
   
 class UserSerializer(serializers.ModelSerializer):
-    posts = serializers.PrimaryKeyRelatedField(many=True, queryset=Post.objects.all())
-    class Meta:
-        model = User
-        fields = ['username','posts', 'created_at']
+  Post = serializers.PrimaryKeyRelatedField(many=True, queryset=Post.objects.all())
+  class Meta:
+    model = User
+    fields = ['username','Post', 'created_at','id']
