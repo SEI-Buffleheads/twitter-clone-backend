@@ -1,1 +1,1 @@
-web: gunicorn 'twitter-clone-backend.wsgi'
+web: gunicorn 'twitterbackend.wsgi' --log-file -
