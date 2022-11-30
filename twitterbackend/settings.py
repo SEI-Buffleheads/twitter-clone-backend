@@ -161,6 +161,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://twitter-clone-backend-production-c9cc.up.railway.app",
 ]
 
+CORS_ALLOW_HEADERS = ['*']
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 # SWAGGER_SETTINGS = {
