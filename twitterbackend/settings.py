@@ -25,12 +25,7 @@ SECRET_KEY = 'django-insecure-n62zn8(mw%!jy&l9yukjy0jn8uk=v%!0_!#)s$(2o=+uen=079
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '*',
-    '0.0.0.0',
-    'https://twitter-clone-backend-production-0cca.up.railway.app/',
-    '127.0.0.1'
-]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -41,17 +36,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "corsheaders",
     'rest_framework',
     'rest_framework_simplejwt',
     'authentication',
     'twitterapi',
-    'drf_yasg'
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -82,16 +79,16 @@ WSGI_APPLICATION = 'twitterbackend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-CSRF_TRUSTED_ORIGINS = ['https://twitter-clone-backend-production-0cca.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://twitter-clone-backend-production-c9cc.up.railway.app']
 
 DATABASES = {
     'default': {
       'ENGINE': 'django.db.backends.postgresql',
       'NAME': 'railway',
       'USER': 'postgres',
-      'PASSWORD': 'i0xuK4qlEXKKWGQ4eOXP',
-      'HOST': 'containers-us-west-93.railway.app',
-      'PORT': '7729'
+      'PASSWORD': 'ji38Yr95YfFkspNcMCCC',
+      'HOST': 'containers-us-west-109.railway.app',
+      'PORT': '6023',
     }
 }
 
@@ -153,8 +150,21 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=2),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
-
 }
+
+
+CORS_ALLOWED_ORIGINS = [
+    "*",
+    "0.0.0.0",
+    "127.0.0.1",
+    "http://localhost:8000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000",
+    "http://localhost:3000",
+    "https://twitter-clone-backend-production-c9cc.up.railway.app",
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 # SWAGGER_SETTINGS = {
 #   'SECURITY_DEFINITIONS' : {

@@ -11,5 +11,4 @@ router.register(r'allcomments', CommentViewSet, basename='allComments')
 
 urlpatterns = [
   path('', include(router.urls))
-  
 ]
