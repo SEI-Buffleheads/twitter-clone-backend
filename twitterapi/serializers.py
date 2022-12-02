@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
   owner = serializers.CharField(max_length=255, min_length = 3, read_only= True)
-  post = serializers.CharField(max_length=255, min_length = 3, read_only= True)
+  #post = serializers.CharField(max_length=255, min_length = 3, read_only= True)
   class Meta:
     model = Comment
     fields = [ "text", "date", "title",'owner','id',"post"]
