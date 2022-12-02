@@ -10,7 +10,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
   owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comment_owner", null=True)
-  post = models.CharField(max_length=128, blank=False)
+  post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="post_its_on", null=True)
   text = models.CharField(max_length=128, blank=False)
   title = models.CharField(max_length=128, default="Text")
   date = models.DateTimeField(auto_now_add = True)
