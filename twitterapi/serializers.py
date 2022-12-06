@@ -6,7 +6,7 @@ class PostSerializer(serializers.ModelSerializer):
   owner = serializers.CharField(max_length=255, min_length = 3, read_only= True)
   class Meta:
     model = Post
-    fields = [ "text", "date", "title",'owner','id','ownerUsername']
+    fields = [ "text", "date", "title",'owner','id','ownerusername']
   
 class UserSerializer(serializers.ModelSerializer):
   post_owner = serializers.PrimaryKeyRelatedField(queryset=Post.objects.all(), many=True)
