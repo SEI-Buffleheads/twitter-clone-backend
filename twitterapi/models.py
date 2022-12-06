@@ -7,7 +7,7 @@ class Post(models.Model):
   title = models.CharField(max_length=1000, default="Text")
   date = models.DateTimeField(auto_now_add = True)
   likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='post_liked', blank=True)
-  ownerUsername = models.CharField(max_length=128)
+  ownerusername = models.CharField(max_length=128)
 
 class Comment(models.Model):
   owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comment_owner", null=True)
